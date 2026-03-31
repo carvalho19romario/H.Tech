@@ -17,7 +17,7 @@ export function Footer() {
               © {year} {content.company.name}. Todos os direitos reservados.
             </p>
             <p className="text-xs opacity-50">
-              CNPJ 35.143.695/0001-45 — H. TECH COMERCIO E MANUTENCAO DE ELETRONICOS LTDA
+              CNPJ {content.company.cnpj} — {content.company.legalName}
             </p>
           </div>
         </div>
