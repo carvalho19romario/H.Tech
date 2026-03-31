@@ -5,6 +5,7 @@ import { ComparisonSection } from '@/components/landing/ComparisonSection';
 import { ServicesSection } from '@/components/landing/ServicesSection';
 import { TestimonialsSection } from '@/components/landing/TestimonialsSection';
 import { ContactSection } from '@/components/landing/ContactSection';
+import { GallerySection } from '@/components/landing/GallerySection';
 import { Footer } from '@/components/landing/Footer';
 import { FloatingWhatsApp } from '@/components/landing/FloatingWhatsApp';
 import { useSiteContent } from '@/contexts/SiteContentContext';
@@ -21,6 +22,7 @@ const Index = () => {
       {s.comparison.enabled && <ComparisonSection />}
       {s.services.enabled && <div id="servicos"><ServicesSection /></div>}
       {s.testimonials.enabled && <div id="depoimentos"><TestimonialsSection /></div>}
+      {s.gallery.enabled && <div id="galeria"><GallerySection /></div>}
       {s.contact.enabled && <ContactSection />}
       <Footer />
       <FloatingWhatsApp />

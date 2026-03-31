@@ -9,12 +9,17 @@ export function Footer() {
       <div className="container mx-auto px-4 lg:px-8">
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-3">
-            <img src={content.company.logo} alt={content.company.name} className="h-8 w-auto brightness-0 invert" />
+            <img src="/logo.svg" alt={content.company.name} className="h-8 w-auto" />
             <span className="font-bold">{content.company.name}</span>
           </div>
-          <p className="text-sm opacity-70">
-            © {year} {content.company.name}. Todos os direitos reservados.
-          </p>
+          <div className="text-center md:text-right space-y-1">
+            <p className="text-sm opacity-70">
+              © {year} {content.company.name}. Todos os direitos reservados.
+            </p>
+            <p className="text-xs opacity-50">
+              CNPJ 35.143.695/0001-45 — H. TECH COMERCIO E MANUTENCAO DE ELETRONICOS LTDA
+            </p>
+          </div>
         </div>
       </div>
     </footer>
