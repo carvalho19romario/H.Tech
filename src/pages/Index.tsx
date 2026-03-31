@@ -5,6 +5,7 @@ import { ComparisonSection } from '@/components/landing/ComparisonSection';
 import { ServicesSection } from '@/components/landing/ServicesSection';
 import { TestimonialsSection } from '@/components/landing/TestimonialsSection';
 import { ContactSection } from '@/components/landing/ContactSection';
+import { GallerySection } from '@/components/landing/GallerySection';
 import { Footer } from '@/components/landing/Footer';
 import { FloatingWhatsApp } from '@/components/landing/FloatingWhatsApp';
 import { useSiteContent } from '@/contexts/SiteContentContext';
