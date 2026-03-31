@@ -9,9 +9,11 @@ import { GallerySection } from '@/components/landing/GallerySection';
 import { Footer } from '@/components/landing/Footer';
 import { FloatingWhatsApp } from '@/components/landing/FloatingWhatsApp';
 import { useSiteContent } from '@/contexts/SiteContentContext';
+import { useGTM } from '@/hooks/useGTM';
 
 const Index = () => {
   const { content } = useSiteContent();
+  useGTM();
   const s = content.sections;
 
   return (
