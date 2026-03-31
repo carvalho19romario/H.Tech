@@ -18,7 +18,7 @@ export function Navbar() {
     <nav className="sticky top-0 z-40 bg-background/80 backdrop-blur-lg border-b">
       <div className="container mx-auto px-4 lg:px-8 flex items-center justify-between h-16">
         <a href="/" className="flex items-center gap-2">
-          <img src={content.company.logo} alt={content.company.name} className="h-8 w-auto" />
+          <img src="/logo.svg" alt={content.company.name} className="h-8 w-auto" />
           <span className="font-bold text-lg hidden sm:inline">{content.company.name.split(' ')[0]}</span>
         </a>
 
