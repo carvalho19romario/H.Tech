@@ -37,7 +37,9 @@ export function GallerySection() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="group relative rounded-xl overflow-hidden shadow-md aspect-square"
+              className={`group relative rounded-xl overflow-hidden shadow-md ${
+                i === 0 ? 'sm:col-span-2 aspect-video' : 'aspect-square'
+              }`}
             >
               <img
                 src={img.url}

@@ -111,6 +111,9 @@ export default function Admin() {
                 <Field label="URL Google Reviews" value={draft.company.googleReviewsUrl} onChange={v => update('company.googleReviewsUrl', v)} />
                 <Field label="Nota Google" value={draft.company.googleRating} onChange={v => update('company.googleRating', v)} />
                 <Field label="URL embed do mapa" value={draft.company.mapEmbedUrl} onChange={v => update('company.mapEmbedUrl', v)} multiline />
+                <Field label="Google Tag Manager ID (ex: GTM-XXXX)" value={draft.company.gtmId} onChange={v => update('company.gtmId', v)} />
+                <Field label="CNPJ" value={draft.company.cnpj} onChange={v => update('company.cnpj', v)} />
+                <Field label="Razão Social" value={draft.company.legalName} onChange={v => update('company.legalName', v)} />
               </CardContent>
             </Card>
           </TabsContent>
