@@ -49,6 +49,9 @@ export interface SiteContent {
     googleReviewsUrl: string;
     googleRating: string;
     mapEmbedUrl: string;
+    gtmId: string;
+    cnpj: string;
+    legalName: string;
   };
   hero: {
     badge: string;
