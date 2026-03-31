@@ -1,16 +1,31 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { Navbar } from '@/components/landing/Navbar';
+import { HeroSection } from '@/components/landing/HeroSection';
+import { WhyChooseSection } from '@/components/landing/WhyChooseSection';
+import { ComparisonSection } from '@/components/landing/ComparisonSection';
+import { ServicesSection } from '@/components/landing/ServicesSection';
+import { TestimonialsSection } from '@/components/landing/TestimonialsSection';
+import { ContactSection } from '@/components/landing/ContactSection';
+import { Footer } from '@/components/landing/Footer';
+import { FloatingWhatsApp } from '@/components/landing/FloatingWhatsApp';
+import { useSiteContent } from '@/contexts/SiteContentContext';
 
-// IMPORTANT: Fully REPLACE this with your own code
-const PlaceholderIndex = () => {
-  // PLACEHOLDER: Replace this entire return statement with the user's app.
-  // The inline background color is intentionally not part of the design system.
+const Index = () => {
+  const { content } = useSiteContent();
+  const s = content.sections;
+
   return (
-    <div className="flex min-h-screen items-center justify-center" style={{ backgroundColor: '#fcfbf8' }}>
-      <img data-lovable-blank-page-placeholder="REMOVE_THIS" src="/placeholder.svg" alt="Your app will live here!" />
+    <div className="min-h-screen">
+      <Navbar />
+      {s.hero.enabled && <HeroSection />}
+      {s.whyChoose.enabled && <div id="sobre"><WhyChooseSection /></div>}
+      {s.comparison.enabled && <ComparisonSection />}
+      {s.services.enabled && <div id="servicos"><ServicesSection /></div>}
+      {s.testimonials.enabled && <div id="depoimentos"><TestimonialsSection /></div>}
+      {s.contact.enabled && <ContactSection />}
+      <Footer />
+      <FloatingWhatsApp />
     </div>
   );
 };
-
-const Index = PlaceholderIndex;
 
 export default Index;
