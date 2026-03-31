@@ -212,7 +212,7 @@ const defaultContent: SiteContent = {
     comparison: { enabled: true },
     services: { enabled: true },
     testimonials: { enabled: true },
-    gallery: { enabled: false },
+    gallery: { enabled: true },
     contact: { enabled: true },
   },
 };

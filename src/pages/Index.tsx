@@ -22,6 +22,7 @@ const Index = () => {
       {s.comparison.enabled && <ComparisonSection />}
       {s.services.enabled && <div id="servicos"><ServicesSection /></div>}
       {s.testimonials.enabled && <div id="depoimentos"><TestimonialsSection /></div>}
+      {s.gallery.enabled && <div id="galeria"><GallerySection /></div>}
       {s.contact.enabled && <ContactSection />}
       <Footer />
       <FloatingWhatsApp />
