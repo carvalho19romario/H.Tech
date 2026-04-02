@@ -109,7 +109,7 @@ export interface SiteContent {
   };
 }
 
-const defaultContent: SiteContent = {
+export const defaultContent: SiteContent = {
   company: {
     name: "H.Tech Balneário Camboriú",
     phone: "(47) 3360-0899",
