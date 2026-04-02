@@ -78,16 +78,15 @@ export default function Admin() {
     setDraft(newDraft);
   };
 
-  const save = () => {
-    updateContent(draft);
-    toast({ title: 'Salvo!', description: 'As alterações foram aplicadas ao site.' });
+  const save = async () => {
+    await updateContent(draft);
+    toast({ title: 'Salvo!', description: 'As alterações foram salvas no banco de dados.' });
   };
 
-  const reset = () => {
-    resetContent();
-    setDraft(JSON.parse(JSON.stringify(content)));
+  const reset = async () => {
+    await resetContent();
+    setDraft(JSON.parse(JSON.stringify(defaultContent)));
     toast({ title: 'Resetado', description: 'Conteúdo restaurado ao padrão.' });
-    setTimeout(() => window.location.reload(), 500);
   };
 
   return (
