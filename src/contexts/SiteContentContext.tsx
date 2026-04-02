@@ -1,4 +1,5 @@
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import React, { createContext, useContext, useState, useEffect, useCallback, ReactNode } from 'react';
+import { supabase } from '@/integrations/supabase/client';
 
 export interface Testimonial {
   initials: string;
@@ -108,7 +109,7 @@ export interface SiteContent {
   };
 }
 
-const defaultContent: SiteContent = {
+export const defaultContent: SiteContent = {
   company: {
     name: "H.Tech Balneário Camboriú",
     phone: "(47) 3360-0899",
@@ -223,43 +224,99 @@ const defaultContent: SiteContent = {
   },
 };
 
-const STORAGE_KEY = 'htech-site-content';
+
 
 interface SiteContentContextType {
   content: SiteContent;
   updateContent: (newContent: SiteContent) => void;
   resetContent: () => void;
   getWhatsappUrl: () => string;
+  loading: boolean;
 }
 
 const SiteContentContext = createContext<SiteContentContextType | undefined>(undefined);
 
 export function SiteContentProvider({ children }: { children: ReactNode }) {
-  const [content, setContent] = useState<SiteContent>(() => {
-    try {
-      const stored = localStorage.getItem(STORAGE_KEY);
-      if (stored) {
-        return { ...defaultContent, ...JSON.parse(stored) };
-      }
-    } catch {}
-    return defaultContent;
-  });
+  const [content, setContent] = useState<SiteContent>(defaultContent);
+  const [loading, setLoading] = useState(true);
 
+  // Load content from Supabase on mount
   useEffect(() => {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(content));
-  }, [content]);
+    const loadContent = async () => {
+      try {
+        const { data, error } = await supabase
+          .from('site_content')
+          .select('data')
+          .eq('id', 'main')
+          .maybeSingle();
 
-  const updateContent = (newContent: SiteContent) => setContent(newContent);
-  const resetContent = () => {
-    localStorage.removeItem(STORAGE_KEY);
+        if (!error && data?.data) {
+          setContent({ ...defaultContent, ...(data.data as unknown as Partial<SiteContent>) });
+        }
+      } catch (e) {
+        console.error('Failed to load site content:', e);
+      } finally {
+        setLoading(false);
+      }
+    };
+    loadContent();
+  }, []);
+
+  const updateContent = useCallback(async (newContent: SiteContent) => {
+    setContent(newContent);
+    try {
+      const { data: existing } = await supabase
+        .from('site_content')
+        .select('id')
+        .eq('id', 'main')
+        .maybeSingle();
+
+      if (existing) {
+        await supabase
+          .from('site_content')
+          .update({ data: JSON.parse(JSON.stringify(newContent)), updated_at: new Date().toISOString() } as any)
+          .eq('id', 'main');
+      } else {
+        await supabase
+          .from('site_content')
+          .insert({ id: 'main', data: JSON.parse(JSON.stringify(newContent)) } as any);
+      }
+    } catch (e) {
+      console.error('Failed to save site content:', e);
+    }
+  }, []);
+
+  const resetContent = useCallback(async () => {
     setContent(defaultContent);
-  };
+    try {
+      const { data: existing } = await supabase
+        .from('site_content')
+        .select('id')
+        .eq('id', 'main')
+        .maybeSingle();
 
-  const getWhatsappUrl = () =>
-    `https://wa.me/${content.company.whatsapp}?text=${encodeURIComponent(content.company.whatsappMessage)}`;
+      if (existing) {
+        await supabase
+          .from('site_content')
+          .update({ data: JSON.parse(JSON.stringify(defaultContent)), updated_at: new Date().toISOString() } as any)
+          .eq('id', 'main');
+      } else {
+        await supabase
+          .from('site_content')
+          .insert({ id: 'main', data: JSON.parse(JSON.stringify(defaultContent)) } as any);
+      }
+    } catch (e) {
+      console.error('Failed to reset site content:', e);
+    }
+  }, []);
+
+  const getWhatsappUrl = useCallback(() =>
+    `https://wa.me/${content.company.whatsapp}?text=${encodeURIComponent(content.company.whatsappMessage)}`,
+    [content.company.whatsapp, content.company.whatsappMessage]
+  );
 
   return (
-    <SiteContentContext.Provider value={{ content, updateContent, resetContent, getWhatsappUrl }}>
+    <SiteContentContext.Provider value={{ content, updateContent, resetContent, getWhatsappUrl, loading }}>
       {children}
     </SiteContentContext.Provider>
   );
