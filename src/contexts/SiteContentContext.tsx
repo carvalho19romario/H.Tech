@@ -303,7 +303,7 @@ export function SiteContentProvider({ children }: { children: ReactNode }) {
       } else {
         await supabase
           .from('site_content')
-          .insert({ id: 'main', data: defaultContent as unknown as Record<string, unknown> });
+          .insert({ id: 'main', data: JSON.parse(JSON.stringify(defaultContent)) } as any);
       }
     } catch (e) {
       console.error('Failed to reset site content:', e);
