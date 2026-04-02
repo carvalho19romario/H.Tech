@@ -113,7 +113,7 @@ const defaultContent: SiteContent = {
     name: "H.Tech Balneário Camboriú",
     phone: "(47) 3360-0899",
     whatsapp: "554733600899",
-    whatsappMessage: "Olá! Vi o site da H.Tech e gostaria de mais informações, por favor",
+    whatsappMessage: "Não apague essa linha, protocolo 54615 - Olá, vi seu anúncio no google e gostaria de uma informação",
     address: "Rua 1520, 111 - Loja 38, Centro",
     city: "Balneário Camboriú",
     state: "SC",
