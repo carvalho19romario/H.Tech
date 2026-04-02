@@ -298,7 +298,7 @@ export function SiteContentProvider({ children }: { children: ReactNode }) {
       if (existing) {
         await supabase
           .from('site_content')
-          .update({ data: defaultContent as unknown as Record<string, unknown>, updated_at: new Date().toISOString() })
+          .update({ data: JSON.parse(JSON.stringify(defaultContent)), updated_at: new Date().toISOString() } as any)
           .eq('id', 'main');
       } else {
         await supabase
