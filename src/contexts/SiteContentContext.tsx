@@ -129,7 +129,7 @@ const defaultContent: SiteContent = {
     googleReviewsUrl: "https://www.google.com/search?q=htech+balneario+camboriu",
     googleRating: "5.0",
     mapEmbedUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3554.8!2d-48.6356!3d-26.9908!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjbCsDU5JzI3LjAiUyA0OMKwMzgnMDguMCJX!5e0!3m2!1spt-BR!2sbr!4v1",
-    gtmId: "",
+    gtmId: "GTM-WVCLMMNJ",
     cnpj: "35.143.695/0001-45",
     legalName: "H. TECH COMERCIO E MANUTENCAO DE ELETRONICOS LTDA",
   },

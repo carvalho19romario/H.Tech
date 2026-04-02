@@ -28,6 +28,44 @@ export default function Admin() {
   const { content, updateContent, resetContent } = useSiteContent();
   const [draft, setDraft] = useState<SiteContent>(JSON.parse(JSON.stringify(content)));
   const { toast } = useToast();
+  const [authenticated, setAuthenticated] = useState(false);
+  const [passwordInput, setPasswordInput] = useState('');
+  const [passwordError, setPasswordError] = useState('');
+
+  const ADMIN_PASSWORD = 'htech1234';
+
+  const handleLogin = () => {
+    if (passwordInput === ADMIN_PASSWORD) {
+      setAuthenticated(true);
+      setPasswordError('');
+    } else {
+      setPasswordError('Senha incorreta. Tente novamente.');
+    }
+  };
+
+  if (!authenticated) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-background p-4">
+        <Card className="w-full max-w-md">
+          <CardHeader>
+            <CardTitle className="text-center">Painel Administrativo</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <p className="text-sm text-muted-foreground text-center">Digite a senha para acessar o painel de edição.</p>
+            <Input
+              type="password"
+              placeholder="Senha"
+              value={passwordInput}
+              onChange={e => setPasswordInput(e.target.value)}
+              onKeyDown={e => e.key === 'Enter' && handleLogin()}
+            />
+            {passwordError && <p className="text-sm text-destructive">{passwordError}</p>}
+            <Button onClick={handleLogin} className="w-full">Entrar</Button>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
 
   const update = (path: string, value: any) => {
     const newDraft = JSON.parse(JSON.stringify(draft));
