@@ -224,7 +224,7 @@ const defaultContent: SiteContent = {
   },
 };
 
-const STORAGE_KEY = 'htech-site-content';
+
 
 interface SiteContentContextType {
   content: SiteContent;
