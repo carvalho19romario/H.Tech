@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useSiteContent, SiteContent } from '@/contexts/SiteContentContext';
+import { useSiteContent, SiteContent, defaultContent } from '@/contexts/SiteContentContext';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
