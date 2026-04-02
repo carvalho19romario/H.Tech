@@ -279,7 +279,7 @@ export function SiteContentProvider({ children }: { children: ReactNode }) {
       } else {
         await supabase
           .from('site_content')
-          .insert({ id: 'main', data: newContent as unknown as Record<string, unknown> });
+          .insert({ id: 'main', data: JSON.parse(JSON.stringify(newContent)) } as any);
       }
     } catch (e) {
       console.error('Failed to save site content:', e);
