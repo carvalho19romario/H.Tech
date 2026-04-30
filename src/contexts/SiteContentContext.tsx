@@ -123,7 +123,7 @@ export const defaultContent: SiteContent = {
     hours: "Todos os dias",
     hoursDetail: "9h às 21h",
     logo: "/logo.svg",
-    heroImage: "/images/centro.webp",
+    heroImage: "/images/hero.webp",
     yearsExperience: "+9",
     devicesCount: "+25 mil",
     since: "2016",
